@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_fixed_discount"
+              inherit_id="sale.report_saleorder_document"
+              priority="50">
+
+        <!-- ၁. Table Header - "Fixed Discount" Column -->
+        <xpath expr="//th[@name='th_subtotal']" position="before">
+            <th class="text-end">Fixed Discount</th>
+        </xpath>
+
+        <!-- ၂. Table Body - Fixed Discount Value -->
+        <xpath expr="//td[@name='td_product_subtotal']" position="before">
+            <td class="text-end">
+                <span t-field="line.fixed_discount"
+                      t-options='{"widget": "monetary", "display_currency": line.currency_id}'/>
+            </td>
+        </xpath>
+
+    </template>
+</odoo>

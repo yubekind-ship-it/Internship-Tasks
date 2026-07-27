@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- ============================================ -->
+    <!-- PURCHASE ORDER REPORT အတွက် -->
+    <!-- ============================================ -->
+    <template id="purchase_order_report_employee" inherit_id="purchase.report_purchaseorder_document" priority="50">
+
+        <!-- Employee Field ထည့်ခြင်း -->
+        <xpath expr="//div[@class='page']" position="inside">
+            <div t-if="o.employee_id" class="row mt-2">
+                <div class="col-12 col-md-6">
+                    <strong>Employee</strong><br/>
+                    <span t-field="o.employee_id.name"/>
+                </div>
+            </div>
+        </xpath>
+    </template>
+
+    <!-- ============================================ -->
+    <!-- VENDOR BILL REPORT အတွက် -->
+    <!-- ============================================ -->
+    <template id="account_invoice_report_employee" inherit_id="account.report_invoice_document" priority="50">
+
+        <!-- Employee Field ထည့်ခြင်း -->
+        <xpath expr="//div[@id='informations']" position="inside">
+            <div class="col" t-if="o.employee_id" name="employee">
+                <strong>Employee</strong>
+                <div t-field="o.employee_id.name"/>
+            </div>
+        </xpath>
+
+        <!-- Note ဖျောက်ခြင်း -->
+        <xpath expr="//span[@t-field='o.invoice_payment_term_id.note']/ancestor::div[contains(@class, 'mb-3')]" position="replace"/>
+
+        <!-- Table ပြင်ဆင်ခြင်း -->
+        <xpath expr="//table[contains(@class, 'o_main_table')]" position="replace">
+            <table class="table table-sm o_main_table">
+                <thead>
+                    <tr>
+                        <th class="text-center" style="width: 5%;">#</th>
+                        <th class="text-start">Description</th>
+                        <th class="text-end">Quantity</th>
+                        <th class="text-end">Unit Price</th>
+                        <th class="text-end">Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="o.invoice_line_ids" t-as="line" t-index="line_index">
+                        <td class="text-center"><span t-esc="line_index + 1"/></td>
+                        <td class="text-start"><span t-field="line.name"/></td>
+                        <td class="text-end"><span t-field="line.quantity"/></td>
+                        <td class="text-end"><span t-field="line.price_unit"/></td>
+                        <td class="text-end"><span t-field="line.price_subtotal"/></td>
+                    </tr>
+                </tbody>
+            </table>
+        </xpath>
+
+    </template>
+</odoo>

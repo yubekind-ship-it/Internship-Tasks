@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <!-- 1. Form View - Employee field in Purchase Order Form -->
+    <record id="purchase_order_form_inherit_employee" model="ir.ui.view">
+        <field name="name">purchase.order.form.employee</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="employee_id"
+                       options="{'no_create': True}"
+                       readonly="state in ('purchase', 'cancel', 'done')"/>
+            </xpath>
+        </field>
+    </record>
+
+    <!-- 2. List View - Employee column in Purchase Order List -->
+    <record id="purchase_order_list_inherit_employee" model="ir.ui.view">
+    <field name="name">purchase.order.list.employee</field>
+    <field name="model">purchase.order</field>
+    <field name="inherit_id" ref="purchase.purchase_order_view_tree"/>
+    <field name="arch" type="xml">
+        <xpath expr="//field[@name='partner_id']" position="before">
+            <field name="employee_id"/>
+        </xpath>
+    </field>
+</record>
+    <!-- Pivot View - အစားထိုးခြင်း -->
+<record id="purchase_order_pivot_inherit_employee" model="ir.ui.view">
+    <field name="name">purchase.order.pivot.employee</field>
+    <field name="model">purchase.order</field>
+    <field name="inherit_id" ref="purchase.purchase_order_pivot"/>
+    <field name="arch" type="xml">
+        <xpath expr="//pivot" position="attributes">
+            <attribute name="sample">1</attribute>
+        </xpath>
+        <xpath expr="//field[@name='partner_id']" position="after">
+            <field name="employee_id" type="col"/>
+        </xpath>
+    </field>
+    </record>
+    <!-- 3. Search View - Employee in search and group by -->
+    <record id="purchase_order_search_inherit_employee" model="ir.ui.view">
+        <field name="name">purchase.order.search.employee</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_view_search"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="employee_id"/>
+            </xpath>
+            <xpath expr="//filter[@name='representative']" position="after">
+                <filter name="groupby_employee"
+                        string="Employee"
+                        domain="[]"
+                        context="{'group_by': 'employee_id'}"/>
+            </xpath>
+        </field>
+    </record>
+
+</odoo>

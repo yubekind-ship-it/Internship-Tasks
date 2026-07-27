@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="account_invoice_fixed_discount" inherit_id="account.report_invoice_document">
+        <!-- Add header column -->
+        <xpath expr="//th[@name='th_description']" position="after">
+            <th class="text-end">Fixed Disc.</th>
+        </xpath>
+
+        <!-- Add field value for each line -->
+        <xpath expr="//td[@name='td_product_name']" position="after">
+            <td class="text-end">
+                <span t-field="line.fixed_discount"
+                      t-options='{"widget": "monetary", "display_currency": "line.currency_id"}'/>
+            </td>
+        </xpath>
+    </template>
+</odoo>

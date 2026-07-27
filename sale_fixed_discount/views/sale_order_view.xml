@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Tree View (Table) မှာ Tax နောက်မှာ ထည့်တာ -->
+<!--    <record id="view_order_line_tree_inherit_fixed_discount" model="ir.ui.view">-->
+<!--        <field name="name">sale.order.line.tree.fixed.discount</field>-->
+<!--        <field name="model">sale.order.line</field>-->
+<!--        <field name="inherit_id" ref="sale.view_order_line_tree"/>-->
+<!--        <field name="arch" type="xml">-->
+<!--            <xpath expr="//field[@name='product_uom_qty']" position="after">-->
+<!--                <field name="fixed_discount"-->
+<!--                       sum="Total Disc."-->
+<!--                       widget="monetary"-->
+<!--                       options="{'currency_field': 'currency_id'}"/>-->
+<!--            </xpath>-->
+<!--        </field>-->
+<!--    </record>-->
+
+    <!-- Form View (စာကြောင်းတစ်ခုကိုနှိပ်ရင်) မှာ Tax နောက်မှာ ထည့်တာ -->
+    <record id="view_order_form_inherit_fixed_discount" model="ir.ui.view">
+        <field name="name">sale.order.form.fixed.discount</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr='//field[@name="order_line"]/list//field[@name="discount"]' position="after">
+                <field name="fix_discount"
+                       widget="monetary"
+                       options="{'currency_field': 'currency_id'}"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

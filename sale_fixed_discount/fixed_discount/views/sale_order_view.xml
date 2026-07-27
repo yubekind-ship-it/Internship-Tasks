@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!--    &lt;!&ndash; Sale Order Form View - Fixed Discount (order_line ထဲမှာ) &ndash;&gt;-->
+<!--    <record id="view_order_form_inherit_fixed_discount" model="ir.ui.view">-->
+<!--        <field name="name">sale.order.form.fixed.discount</field>-->
+<!--        <field name="model">sale.order</field>-->
+<!--        <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--        <field name="arch" type="xml">-->
+
+<!--            &lt;!&ndash; List/Table View မှာ Fixed Discount Column ထည့်ပါ &ndash;&gt;-->
+<!--            <xpath expr="//field[@name='order_line']//field[@name='discount']" position="after">-->
+<!--                <field name="fixed_discount"-->
+<!--                       widget="monetary"-->
+<!--                       force_save="1"-->
+<!--                       options="{'currency_field': 'currency_id'}"-->
+<!--                       sum="Total Disc."/>-->
+<!--            </xpath>-->
+
+<!--        </field>-->
+<!--    </record>-->
+    <!-- Sale Order Form View - Fixed Discount -->
+    <record id="view_order_form_inherit_fixed_discount" model="ir.ui.view">
+        <field name="name">sale.order.form.fixed.discount</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+
+            <!-- List/Table View မှာ Fixed Discount Column ထည့်ပါ -->
+            <xpath expr="//field[@name='order_line']/list//field[@name='discount']" position="after">
+                <field name="fixed_discount"
+                       widget="monetary"
+                       force_save="1"
+                       options="{'currency_field': 'currency_id'}"/>
+<!--                       sum="Total Disc."/>-->
+            </xpath>
+
+        </field>
+    </record>
+
+</odoo>
+
+
+<!--<?xml version="1.0" encoding="utf-8"?>-->
+<!--<odoo>-->
+<!--    <data>-->
+
+<!--        &lt;!&ndash; Sale Order Form Inherit (Odoo 19) &ndash;&gt;-->
+<!--        <record id="view_order_form_inherit_fixed_discount" model="ir.ui.view">-->
+<!--            <field name="name">sale.order.form.fixed.discount</field>-->
+<!--            <field name="model">sale.order</field>-->
+<!--            <field name="inherit_id" ref="sale.view_order_form"/>-->
+<!--            <field name="arch" type="xml">-->
+
+<!--                &lt;!&ndash; ၁။ မျက်ပြင် List View (Table) ထဲမှာ field ကို ပြသခြင်း &ndash;&gt;-->
+<!--                <xpath expr="//field[@name='order_line']/list//field[@name='discount']" position="after">-->
+<!--                    <field name="fixed_discount"-->
+<!--                           widget="monetary"-->
+<!--                           force_save="1"-->
+<!--                           options="{'currency_field': 'currency_id'}"/>-->
+<!--                </xpath>-->
+
+<!--                &lt;!&ndash; ၂။ စာကြောင်းတစ်ခုချင်းစီကို ကလစ်နှိပ်ရင် ပေါ်လာမယ့် Pop-up Form ထဲမှာပါ ထည့်သွင်းခြင်း (ဒါမှ Logic မိမှာပါ) &ndash;&gt;-->
+<!--                <xpath expr="//field[@name='order_line']/form//field[@name='discount']" position="after">-->
+<!--                    <field name="fixed_discount"-->
+<!--                           widget="monetary"-->
+<!--                           force_save="1"-->
+<!--                           options="{'currency_field': 'currency_id'}"/>-->
+<!--                </xpath>-->
+
+<!--            </field>-->
+<!--        </record>-->
+
+<!--    </data>-->
+<!--</odoo>-->
+<!--&lt;!&ndash;<?xml version="1.0" encoding="utf-8"?>&ndash;&gt;-->
+<!--&lt;!&ndash;<odoo>&ndash;&gt;-->
+<!--    &lt;!&ndash; Tree View (Table) မှာ Tax နောက်မှာ ထည့်တာ &ndash;&gt;-->
+<!--&lt;!&ndash;    <record id="view_order_line_tree_inherit_fixed_discount" model="ir.ui.view">&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="name">sale.order.line.tree.fixed.discount</field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="model">sale.order.line</field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="inherit_id" ref="sale.view_order_line_tree"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="arch" type="xml">&ndash;&gt;-->
+<!--&lt;!&ndash;            <xpath expr="//field[@name='product_uom_qty']" position="after">&ndash;&gt;-->
+<!--&lt;!&ndash;                <field name="fixed_discount"&ndash;&gt;-->
+<!--&lt;!&ndash;                       sum="Total Disc."&ndash;&gt;-->
+<!--&lt;!&ndash;                       widget="monetary"&ndash;&gt;-->
+<!--&lt;!&ndash;                       options="{'currency_field': 'currency_id'}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </xpath>&ndash;&gt;-->
+<!--&lt;!&ndash;        </field>&ndash;&gt;-->
+<!--&lt;!&ndash;    </record>&ndash;&gt;-->
+
+<!--    &lt;!&ndash; Form View (စာကြောင်းတစ်ခုကိုနှိပ်ရင်) မှာ Tax နောက်မှာ ထည့်တာ &ndash;&gt;-->
+<!--&lt;!&ndash;    <record id="view_order_form_inherit_fixed_discount" model="ir.ui.view">&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="name">sale.order.form.fixed.discount</field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="model">sale.order</field>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="inherit_id" ref="sale.view_order_form"/>&ndash;&gt;-->
+<!--&lt;!&ndash;        <field name="arch" type="xml">&ndash;&gt;-->
+<!--&lt;!&ndash;            <xpath expr='//field[@name="order_line"]/list//field[@name="discount"]' position="after">&ndash;&gt;-->
+<!--&lt;!&ndash;                <field name="fixed_discount"&ndash;&gt;-->
+<!--&lt;!&ndash;                       widget="monetary"&ndash;&gt;-->
+<!--&lt;!&ndash;                       options="{'currency_field': 'currency_id'}"/>&ndash;&gt;-->
+<!--&lt;!&ndash;            </xpath>&ndash;&gt;-->
+<!--&lt;!&ndash;        </field>&ndash;&gt;-->
+<!--&lt;!&ndash;    </record>&ndash;&gt;-->
+<!--&lt;!&ndash;</odoo>&ndash;&gt;-->
